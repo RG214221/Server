@@ -11,12 +11,12 @@ namespace Server.Repository
 {
     public class Context : DbContext, IDataSource
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<Patient> Patients { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source = DESKTOP-B5S1T71; Initial Catalog = Practicum_Users_DB; Integrated Security = True; TrustServerCertificate=True ");
-            optionsBuilder.UseLazyLoadingProxies(true).UseSqlServer(@"Data Source = DESKTOP-B5S1T71; Initial Catalog = Practicum_Users_DB; Integrated Security = True; TrustServerCertificate=True ");
+            optionsBuilder.UseSqlServer(@"Data Source =.; Initial Catalog = TehillaHadasim; Integrated Security = True; TrustServerCertificate =True ");
+            optionsBuilder.UseLazyLoadingProxies(true).UseSqlServer(@"Data Source =.; Initial Catalog = TehillaHadasim; Integrated Security = True; TrustServerCertificate =True ");
         }
     }
 }

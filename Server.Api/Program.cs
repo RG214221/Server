@@ -18,7 +18,7 @@ namespace Server.Api
             {
                 builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
             }));
-            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IPatientService, PatientService>();
             builder.Services.AddRepoDependencies();
             var app = builder.Build();
 

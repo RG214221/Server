@@ -18,14 +18,14 @@ namespace Services
     {
         public static void AddRepoDependencies(this IServiceCollection services)
         {
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
 
             MapperConfiguration config = new MapperConfiguration(
-               conf => conf.CreateMap<User, UserModel>()
-               .ForMember(dest => dest.UserId, opt => opt.MapFrom(dest => dest.UserId))
+               conf => conf.CreateMap<Patient, PatientModel>()
+               .ForMember(dest => dest.PatientId, opt => opt.MapFrom(dest => dest.PatientId))
                .ReverseMap()
-               .ForMember(dest => dest.UserId, opt => opt
-               .MapFrom(dest => dest.UserId)));
+               .ForMember(dest => dest.PatientId, opt => opt
+               .MapFrom(dest => dest.PatientId)));
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
             services.AddDbContext<IDataSource, Context>();

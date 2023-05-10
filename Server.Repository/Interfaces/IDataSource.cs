@@ -10,7 +10,7 @@ namespace Repository.Interfaces
 {
     public interface IDataSource
     {
-        DbSet<User> Users { get; set; }
+        DbSet<Patient> Patients { get; set; }
         abstract Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));
     }
 }

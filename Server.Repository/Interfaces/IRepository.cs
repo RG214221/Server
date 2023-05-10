@@ -9,10 +9,7 @@ namespace Repository.Interfaces
     public interface IRepository<T>
     {
         Task<ICollection<T>> GetAllAsync();
-        
-        Task<T>GetByIdNumberAsync(string idNumber);
+        Task<T>GetByIdNumberAsync(int idNumber);
         Task<T> AddAsync(T model);
-        Task<T> UpdateAsync(T model);
-        Task DeleteAsync(string idNumber);
     }
 }

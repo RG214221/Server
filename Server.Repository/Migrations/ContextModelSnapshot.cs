@@ -18,58 +18,58 @@ namespace _3Server.Repository.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.2")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Server.Repository.Entities.Child", b =>
+            modelBuilder.Entity("Server.Repository.Entities.CoronaVaccine", b =>
                 {
-                    b.Property<int>("ChildID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChildID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ChildIDNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ChildName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DOB")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("PatientId")
                         .HasColumnType("int");
 
-                    b.HasKey("ChildID");
+                    b.Property<DateTime>("ReceivingDate")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("UserId");
+                    b.Property<string>("VaccineManufacturer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Child");
+                    b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("CoronaVaccine");
                 });
 
-            modelBuilder.Entity("Server.Repository.Entities.User", b =>
+            modelBuilder.Entity("Server.Repository.Entities.Patient", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("PatientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PatientId"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Gender")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HMO")
+                    b.Property<int>("HouseNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IDNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -77,29 +77,39 @@ namespace _3Server.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PrivateName")
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserIDNumber")
+                    b.Property<DateTime>("ReceivingPositiveResultDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RecoveryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Street")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.Property<string>("TelNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Users");
+                    b.HasKey("PatientId");
+
+                    b.ToTable("Patients");
                 });
 
-            modelBuilder.Entity("Server.Repository.Entities.Child", b =>
+            modelBuilder.Entity("Server.Repository.Entities.CoronaVaccine", b =>
                 {
-                    b.HasOne("Server.Repository.Entities.User", null)
-                        .WithMany("Children")
-                        .HasForeignKey("UserId");
+                    b.HasOne("Server.Repository.Entities.Patient", null)
+                        .WithMany("CoronaVaccines")
+                        .HasForeignKey("PatientId");
                 });
 
-            modelBuilder.Entity("Server.Repository.Entities.User", b =>
+            modelBuilder.Entity("Server.Repository.Entities.Patient", b =>
                 {
-                    b.Navigation("Children");
+                    b.Navigation("CoronaVaccines");
                 });
 #pragma warning restore 612, 618
         }

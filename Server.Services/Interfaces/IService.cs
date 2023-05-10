@@ -11,9 +11,7 @@ namespace Services.Interfaces
     {
         //Implements CRUD
         Task<ICollection<T>> GetAllAsync();
-        Task<T> GetByIdNumberAsync(string idNumber);
+        Task<T> GetByIdNumberAsync(int idNumber);
         Task<T> AddAsync(T model);
-        Task<T> UpdateAsync(T model);
-        Task DeleteAsync(string idNumber);
     }
 }
